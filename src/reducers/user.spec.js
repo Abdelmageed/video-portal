@@ -2,7 +2,8 @@ import MockAdapter from 'axios-mock-adapter';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
 import user from './user';
-import {initialState} from '../initialState';
+import {initialState}
+from '../initialState';
 import * as actionNames from '../constants/actions';
 import * as endpoints from '../constants/endpoints';
 import * as actions from '../actions/actionCreators';
@@ -121,18 +122,18 @@ describe('User Reducer', () => {
         actions.setUser(userData)
       ],
       store = storeMock({});
-    
+
     axiosMock.onPost(endpoints.login)
       .reply(200, response);
-    
+
     store.dispatch(actions.login(credentials));
-    setTimeout(()=> {
+    setTimeout(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     }, 10);
-    
+
   });
-  
+
   it('should set a login error message on unsuccessful login', (done) => {
     const response = {
         status: 'error',
@@ -147,17 +148,17 @@ describe('User Reducer', () => {
         actions.loginFailure(response.error)
       ],
       store = storeMock({});
-    
+
     axiosMock.onPost(endpoints.login)
       .reply(200, response);
-    
+
     store.dispatch(actions.login(credentials));
-    setTimeout(()=> {
+    setTimeout(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     }, 10);
   });
-  
+
   it('should logout and remove user data', (done) => {
     const expectedActions = [
       actions.removeUser()
@@ -168,11 +169,13 @@ describe('User Reducer', () => {
       sessionId = 'a8t9Rr9bjWD2InfeFLbNS3FNg5mnFqiV',
       store = storeMock(
         Object.assign({}, initialState, {
-          user: Object.assign({}, initialState.user, {sessionId})
+          user: Object.assign({}, initialState.user, {
+            sessionId
+          })
         })
       );
 
-    axiosMock.onGet(`${endpoints.logout}?sessionId=${sessionId}`)
+    axiosMock.onGet(endpoints.logout)
       .reply(200, response);
 
     store.dispatch(actions.logout());
@@ -181,7 +184,7 @@ describe('User Reducer', () => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
     }, 10);
-    
+
   });
-  
+
 });
