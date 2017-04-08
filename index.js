@@ -2,6 +2,7 @@
 var express = require('express');
 var morgan = require('morgan');
 var bodyParser = require('body-parser');
+var cors = require('cors');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
 var app = express();
@@ -16,11 +17,14 @@ var helperFunctions = require('./helpers/helperFunctions');
 
 
 // Uncomment the following lines to start logging requests to consoles.
-// app.use(morgan('combined'));
+ app.use(morgan('combined'));
 // parse application/x-www-form-urlencoded.
 app.use(bodyParser.urlencoded({ extended: false }));
 // parse application/json.
 app.use(bodyParser.json());
+
+//to be able to send requests from dev server at different port
+app.use(cors());
 
 //connedting to mongoDB
 mongoose.connect('mongodb://'+configs.dbHost+'/'+configs.dbName);
