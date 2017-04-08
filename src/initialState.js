@@ -7,5 +7,7 @@ export const initialState = {
     },
     username: '',
     sessionId: ''
-  }
+  },
+  videos: [],
+  video: {}
 };
