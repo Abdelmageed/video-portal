@@ -8,8 +8,8 @@ export const axiosInstance = axios.create({
 });
 axiosInstance.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded';
 
-export const login = '/auth';
-export const logout = '/logout';
+export const login = 'user/auth';
+export const logout = 'user/logout';
 export const videos = '/videos';
 export const video = '/video';
 export const rating = '/ratings';
