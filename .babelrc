@@ -22,7 +22,16 @@
     "test": {
       "presets": [
         "latest"
-      ]
+      ],
+      "plugins": [["istanbul", {
+        "exclude": [
+          "**/*.spec.js"
+        ],
+        "include": [
+          "src/components/**/*.js",
+          "src/reducers/**/*.js"
+        ]
+      }]]
     }
   }
 }
