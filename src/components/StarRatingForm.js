@@ -20,7 +20,7 @@ export default class StarRatingForm extends Component {
       <StarRating 
       min={0} 
       max={5} 
-      step={0.5}
+      step={1}
       starCaptions={{}}
       showClear={false}
       onRatingChange={this.handleRatingChange}
