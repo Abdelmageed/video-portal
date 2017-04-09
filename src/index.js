@@ -8,40 +8,43 @@ import {Router, browserHistory} from 'react-router';
 import App from './components/App';
 import './index.css';
 import * as actions from './actions/actionCreators';
-//import {getRoutes} from './routes';
+import {getRoutes} from './routes';
 import 'bootstrap/dist/css/bootstrap.css';
 require("font-awesome-webpack");
 
 const store = configureStore();
-store.dispatch(actions.login({username: 'ali', password: 'password'}));
-setTimeout(()=> {
-  console.log(store.getState());
-  store.dispatch(actions.logout());
-  setTimeout(()=> {
-    console.log(store.getState());
-    store.dispatch(actions.login({username: 'ali', password: 'password'}));
-    setTimeout(()=> {
-      console.log(store.getState());
-      store.dispatch(actions.getVideos());
-        store.dispatch(actions.getVideo('58e94291b8ec1526789ec5cd'));
-        store.dispatch(actions.rateVideo('58e94291b8ec1526789ec5cd', 1));
-      setTimeout(()=> {
-        console.log(store.getState());
 
-      }, 4000);
-      
-    }, 4000);
-  }, 4000);
-}, 4000);
-//console.log(store.getState());
-//console.log(store.getState());
-//console.log(store.getState());
+//test actions
+//store.dispatch(actions.login({username: 'ali', password: 'password'}));
+//setTimeout(()=> {
+//  console.log(store.getState());
+//  store.dispatch(actions.logout());
+//  setTimeout(()=> {
+//    console.log(store.getState());
+//    store.dispatch(actions.login({username: 'ali', password: 'password'}));
+//    setTimeout(()=> {
+//      console.log(store.getState());
+//      store.dispatch(actions.getVideos());
+//        store.dispatch(actions.getVideo('58e94291b8ec1526789ec5cd'));
+//        store.dispatch(actions.rateVideo('58e94291b8ec1526789ec5cd', 1));
+//      setTimeout(()=> {
+//        console.log(store.getState());
+//
+//      }, 4000);
+//      
+//    }, 4000);
+//  }, 4000);
+//}, 4000);
+
 //persistStore(store);
 
-//don't render when running coverage
+//don't render when running coverage. Karma serves files on its
+//server, and there is no reactRoot DOM node for react components to render
 const reactRoot = window.document.getElementById("app");
   ReactDOM.render(
     <Provider store={store}>
-      <App />
+      <Router history={browserHistory}>
+        {getRoutes()}
+      </Router>
     </Provider>,
     reactRoot);
