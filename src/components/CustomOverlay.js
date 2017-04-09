@@ -13,9 +13,9 @@ export default class CustomOverlay extends Component {
   }
   
   toggle(){
-    this.setState({
-      show: !this.state.show
-    });
+    this.setState((prevState)=> ({
+      show: !prevState.show
+    }));
   }
   
   render(){
@@ -29,7 +29,7 @@ export default class CustomOverlay extends Component {
         <Overlay
          show={this.state.show}
          onHide={()=> this.setState({show: false})}
-         placement="bottom"
+         placement="right"
          container={this}
          rootClose
          target={()=> ReactDOM.findDOMNode(this.refs.target)}
