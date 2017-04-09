@@ -1,7 +1,9 @@
+import md5 from 'md5';
+import {push} from 'react-router-redux';
+
 import * as actions from '../constants/actions';
 import * as errors from '../constants/errors';
 import * as endpoints from '../constants/endpoints';
-import md5 from 'md5';
 
 const axios = endpoints.axiosInstance;
 
@@ -69,8 +71,12 @@ export const login = (credentials)=> {
           username: response.data.username,
           sessionId: response.data.sessionId
         };
+//        setTimeout(()=> {
+//          browserHistory.push('/');
+//        }, 100);
         dispatch(loginSuccess());
         dispatch(setUser(userData));
+        dispatch(push('/'));
       } else {
         dispatch(loginFailure(response.data.error));
       }
@@ -93,6 +99,8 @@ export const logout = ()=> {
       .then((response)=> {
       if(response.data.status === 'success') {
         dispatch(removeUser());
+//        browserHistory.push('/login');
+        dispatch(push('/login'));
       }
     })
       .catch((error)=> {

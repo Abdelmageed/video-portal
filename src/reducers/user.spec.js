@@ -1,6 +1,8 @@
 import MockAdapter from 'axios-mock-adapter';
 import configureStore from 'redux-mock-store';
 import thunk from 'redux-thunk';
+import {push} from 'react-router-redux';
+
 import user from './user';
 import {initialState}
 from '../initialState';
@@ -119,7 +121,8 @@ describe('User Reducer', () => {
       expectedActions = [
         actions.loginPending(),
         actions.loginSuccess(),
-        actions.setUser(userData)
+        actions.setUser(userData),
+        push('/')
       ],
       store = storeMock({});
 
@@ -161,7 +164,8 @@ describe('User Reducer', () => {
 
   it('should logout and remove user data', (done) => {
     const expectedActions = [
-      actions.removeUser()
+      actions.removeUser(),
+      push('/login')
     ],
       response = {
         status: 'success'
