@@ -2,3 +2,6 @@ body{
   background-color: darkslategrey;
   color: white;
 }
+.rating-disabled{
+  cursor: default !important;
+}
