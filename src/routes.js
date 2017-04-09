@@ -5,7 +5,7 @@ import * as actionCreators from './actions/actionCreators';
 
 import App from './components/App';
 import IndexPage from './components/IndexPage';
-import LoginPage from './containers/LoginPage';
+import LoginPage from './components/LoginPage';
 import VideoDetailsPage from './components/VideoDetailsPage';
 
 export const getRoutes = () => {

@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import LoginForm from '../containers/LoginForm';
+
 export default class LoginPage extends Component {
   
   constructor(props) {
@@ -7,11 +9,10 @@ export default class LoginPage extends Component {
   }
   
   render() {
-    console.log(this.props);
     return (
       <div>
         <h3>Login</h3>
-        <button onClick={this.props.mockLogin}>login</button>
+        <LoginForm />
       </div>
     );
   }
