@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import Nav from '../containers/Nav';
+
 export default class App extends Component{
   
   constructor(props){
@@ -9,7 +11,7 @@ export default class App extends Component{
   render(){
     return (
       <div>
-        <h2>Main</h2>
+        <Nav />
         {this.props.children}
       </div>
     )

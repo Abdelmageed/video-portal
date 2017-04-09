@@ -11,16 +11,22 @@ import VideoDetailsPage from './components/VideoDetailsPage';
 export const getRoutes = () => {
   
   const redirectIfNotAuth = (nextState, replace) => {
-    //check persisted store in local storage for sessionId
-    //as store rehydration happens after page reload, we need
-    //it before that
-  }
+    //use our manually persisted sessionId in local storage as redux-persist store rehydration happens after page reload, we need it before that
+    const sessionId =  localStorage.getItem('sessionId');
+      const isAuthenticated = (sessionId !== '');
+      if(!isAuthenticated) {
+        console.log('not auth redirect');
+        replace({
+          pathname: 'login'
+        });
+      }
+  };
   
   return (
     <Route path="/" component={App}>
-       <IndexRoute component={IndexPage} />
-       <Route path="login" component={LoginPage} />
-       <Route path="video/:id" component={VideoDetailsPage} />
+       <IndexRoute component={IndexPage} onEnter={redirectIfNotAuth}/>
+       <Route path="video/:id" component={VideoDetailsPage} onEnter={redirectIfNotAuth}/>
+     <Route path="login" component={LoginPage} />
     </Route>
   );
 };

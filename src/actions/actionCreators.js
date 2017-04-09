@@ -71,9 +71,6 @@ export const login = (credentials)=> {
           username: response.data.username,
           sessionId: response.data.sessionId
         };
-//        setTimeout(()=> {
-//          browserHistory.push('/');
-//        }, 100);
         dispatch(loginSuccess());
         dispatch(setUser(userData));
         dispatch(push('/'));
