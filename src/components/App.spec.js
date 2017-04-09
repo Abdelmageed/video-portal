@@ -11,12 +11,4 @@ let wrapper;
     wrapper = shallow(<App />);
   });
     
-  it('should just pass', ()=> {
-    const a = true;
-    expect(a).toBe(true);
-  });
-    
-  it('should say hello world', ()=> {
-    expect(wrapper.find('div').text()).toBe('Hello World')
-  })
 });
