@@ -21,9 +21,14 @@ export default class Video extends Component {
     return (
       <div>
         <div className="video-title">
-         <Link to={`video/${this.props.id}`}>
-          {this.props.name}
-         </Link>
+        {
+          (this.props.withLink)?
+           <Link to={`video/${this.props.id}`}>
+            {this.props.name}
+           </Link>
+            :
+            this.props.name
+        }
         </div>
         <div className="video-player">
           <video 
