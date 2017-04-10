@@ -24,7 +24,16 @@ export default function videos(state = initialState.videos, action) {
       return loadVideos(state, action.videos);
     case actions.ADD_RATING:
       return addRating(state, action.videoId, action.rating);
-      
+    case actions.LOADING_VIDEOS:
+      return Object.assign({}, state, {loading: true});
+    case actions.LOADED_VIDEOS:
+      return Object.assign({}, state, {loading: false});
+    case actions.LOADED_ALL_VIDEOS:
+      return Object.assign({}, state, {loadedAll: true});
+    case actions.RESET_LOADED_VIDEOS:
+      return Object.assign({}, state, {
+        items: [], loadedAll: false
+      });
     default:
       return state;
   }

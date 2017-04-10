@@ -6,3 +6,7 @@ export const REMOVE_USER = 'REMOVE_USER';
 export const LOAD_VIDEOS = 'LOAD_VIDEOS';
 export const ADD_RATING = 'ADD_RATING';
 export const LOAD_VIDEO = 'LOAD_VIDEO';
+export const LOADEDED_ALL_VIDEOS = 'LOADEDED_ALL_VIDEOS';
+export const RESET_LOADED_VIDEOS = 'LOADEDED_ALL_VIDEOS';
+export const LOADING_VIDEOS = 'LOADING_VIDEOS';
+export const LOADED_VIDEOS = 'LOADED_VIDEOS';

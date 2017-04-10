@@ -90,6 +90,40 @@ describe('Videos Reducer', ()=> {
     expect(videos(state, action)).toEqual(nextState);
   });
   
+  it('should handle LOADED_ALL_VIDEOS, setting loadedAll to true', ()=> {
+    const action = actions.loadedAllVideos(),
+        state = initialState.videos,
+        nextState = Object.assign({}, state, {loadedAll: true});
+    
+    expect(videos(state, action)).toEqual(nextState);
+  });
+  
+  it('should handle RESET_LOADED_VIDEOS, setting items to [] and loadedAll to false', ()=> {
+    const action = actions.resetLoadedVideos(),
+        state = Object.assign({}, initialState.videos, {
+          items: videosData
+        }),
+        nextState = initialState.videos;
+    
+    expect(videos(state, action)).toEqual(nextState);
+  });
+  
+  it('should handle LOADING_VIDEOS, setting loading to true', ()=> {
+    const action = actions.loadingVideos(),
+        state = initialState.videos,
+        nextState = Object.assign({}, state, {loading: true});
+    
+    expect(videos(state, action)).toEqual(nextState);
+  });
+  
+  it('should handle LOADED_VIDEOS, setting loading to false', ()=> {
+    const action = actions.loadedVideos(),
+        state = Object.assign({}, initialState.videos, {loading: true}),
+        nextState = Object.assign({}, state, {loading: false});
+    
+    expect(videos(state, action)).toEqual(nextState);
+  });
+  
   it('should get videos', (done)=> {
     done();
   });

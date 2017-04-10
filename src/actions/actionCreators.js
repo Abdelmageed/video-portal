@@ -42,6 +42,22 @@ export const addRating = (videoId, rating)=> ({
   videoId,
   rating
 });
+
+export const loadedAllVideos = ()=> ({
+  type: actions.LOADED_ALL_VIDEOS
+});
+
+export const loadingVideos = ()=> ({
+  type: actions.LOADING_VIDEOS
+});
+
+export const loadedVideos = ()=> ({
+  type: actions.LOADED_VIDEOS
+});
+
+export const resetLoadedVideos = ()=> ({
+  type: actions.RESET_LOADED_VIDEOS
+});
 //end videos
 
 
