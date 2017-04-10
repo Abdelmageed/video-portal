@@ -8,6 +8,10 @@ export const initialState = {
     username: '',
     sessionId: ''
   },
-  videos: [],
+  videos: {
+    items: [],
+    loadedAll: false,
+    loading: false
+  },
   video: {}
 };

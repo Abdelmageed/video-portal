@@ -16,7 +16,7 @@ export default class VideoList extends Component {
   
   //if there was an active (playing) video other than the video that has just played. Pause it, and set active video to the new video
   setActiveVideo(videoRef) {
-    if(this.activeVideo && this.activeVideo !== videoRef) {
+    if(this.activeVideo && this.activeVideo != videoRef) {
       this.activeVideo.pause();
     }
     this.activeVideo = videoRef;

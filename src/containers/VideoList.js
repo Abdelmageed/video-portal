@@ -4,7 +4,7 @@ import {getVideos} from '../actions/actionCreators';
 import VideoList from '../components/VideoList';
 
 const mapStateToProps = (state) => ({
-  videos: state.videos
+  videos: state.videos.items
 });
 
 const mapDispatchToProps = (dispatch) => ({

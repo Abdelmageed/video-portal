@@ -66,15 +66,17 @@ describe('Videos Reducer', ()=> {
     axiosMock.restore();
   });
   
-  it('should handle LOAD_VIDEOS, concatentating the loaded videos to the current state', ()=> {
+  it('should handle LOAD_VIDEOS, concatentating the loaded videos to the current state items', ()=> {
     
     const action = actions.loadVideos(videosData),
         state = initialState.videos,
-        nextState = state.concat(videosData);
-    
+        nextState = Object.assign({}, state, {
+          items: initialState.videos.items.concat(videosData)
+        });
+//    console.log(action);
     expect(videos(state, action)).toEqual(nextState);
     
-    expect(videos(nextState, action)).toEqual(nextState.concat(videosData));
+//    expect(videos(nextState, action)).toEqual(nextState.concat(videosData));
   });
   
   it('should handle ADD_RATING, pushing the rating to video.ratings with videoId', ()=> {
@@ -83,8 +85,8 @@ describe('Videos Reducer', ()=> {
     const videoId =  '58e7f19d0e2d4b0f10eb365d',
       rating = '1',
       action = actions.addRating(videoId, rating),
-      state = videosData,
-      nextState = newVideosData;
+      state = Object.assign({}, initialState, {items: videosData}),
+      nextState = Object.assign({}, initialState, {items: newVideosData});
     expect(videos(state, action)).toEqual(nextState);
   });
   

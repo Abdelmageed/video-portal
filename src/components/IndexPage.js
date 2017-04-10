@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import VideoList from '../containers/VideoList';
+
 export default class IndexPage extends Component {
   
   constructor(props) {
@@ -10,6 +12,7 @@ export default class IndexPage extends Component {
     return (
       <div>
         <h3>Index</h3>
+        <VideoList />
       </div>
     );
   }
