@@ -6,9 +6,9 @@ import * as actionCreators from './actions/actionCreators';
 import App from './components/App';
 import IndexPage from './components/IndexPage';
 import LoginPage from './components/LoginPage';
-import VideoDetailsPage from './components/VideoDetailsPage';
+import VideoDetailsPage from './containers/VideoDetailsPage';
 
-import {resetLoadedVideos} from './actions/actionCreators';
+import {resetLoadedVideos, resetLoadedVideo} from './actions/actionCreators';
 
 export const getRoutes = (store) => {
   
@@ -17,7 +17,6 @@ export const getRoutes = (store) => {
     const sessionId =  localStorage.getItem('sessionId');
       const isAuthenticated = (sessionId !== '');
       if(!isAuthenticated) {
-        console.log('not auth redirect');
         replace({
           pathname: 'login'
         });
@@ -27,13 +26,12 @@ export const getRoutes = (store) => {
   const handleIndexOnEnter = (nextState, replace) => {
     redirectIfNotAuth(nextState, replace);
     store.dispatch(resetLoadedVideos());
-    console.log(store.getState());
   };
   
   return (
     <Route path="/" component={App}>
        <IndexRoute component={IndexPage} onEnter={handleIndexOnEnter}/>
-       <Route path="video/:id" component={VideoDetailsPage} onEnter={redirectIfNotAuth}/>
+       <Route path="video/:id" component={VideoDetailsPage} onEnter={redirectIfNotAuth} />
      <Route path="login" component={LoginPage} />
     </Route>
   );

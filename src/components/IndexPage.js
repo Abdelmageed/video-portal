@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 
-import VideoList from '../containers/VideoList';
+import VideoGrid from '../containers/VideoGrid';
 
 export default class IndexPage extends Component {
   
@@ -12,7 +12,7 @@ export default class IndexPage extends Component {
     return (
       <div>
         <h3>Index</h3>
-        <VideoList />
+        <VideoGrid />
       </div>
     );
   }

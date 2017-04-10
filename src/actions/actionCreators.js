@@ -130,7 +130,6 @@ export const getVideos = ()=> {
     const sessionId = getState().user.sessionId,
         skip = getState().videos.items.length,
         limit = 3;
-    console.log(skip);
     return axios.get(endpoints.videos, {
       params: {
         sessionId,

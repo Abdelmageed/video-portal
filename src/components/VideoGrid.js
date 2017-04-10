@@ -5,7 +5,7 @@ import InfiniteScroll from 'redux-infinite-scroll';
 import Video from './Video';
 import {apiUrl} from '../constants/endpoints';
 
-export default class VideoList extends Component {
+export default class VideoGrid extends Component {
   
   constructor (props) {
     super(props);
@@ -34,6 +34,7 @@ export default class VideoList extends Component {
           ratings={video.ratings}
           source={apiUrl + video.url}
           setActive={this.setActiveVideo}
+          withLink={true}
         />
       </Col>
     ));
@@ -48,11 +49,6 @@ export default class VideoList extends Component {
       ));
     }
     return videoRows;
-//    return (
-//      <Grid fluid={true}>
-//        {videoRows}
-//      </Grid>
-//    );
   }
   
   render() {

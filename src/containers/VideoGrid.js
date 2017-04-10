@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import {getVideos} from '../actions/actionCreators';
-import VideoList from '../components/VideoList';
+import VideoGrid from '../components/VideoGrid';
 
 const mapStateToProps = (state) => ({
   videos: state.videos.items,
@@ -13,4 +13,4 @@ const mapDispatchToProps = (dispatch) => ({
   loadMore: ()=> {dispatch(getVideos());}
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(VideoList);
+export default connect(mapStateToProps, mapDispatchToProps)(VideoGrid);
