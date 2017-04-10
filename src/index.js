@@ -20,7 +20,10 @@ store.subscribe(()=> {
   const sessionId = store.getState().user.sessionId;
   localStorage.setItem('sessionId', sessionId);
 });
-
+//setTimeout(() => {
+//  store.dispatch(actions.getVideos());
+//  console.log('got first 4 videos');
+//}, 5000);
 //test actions
 //store.dispatch(actions.login({username: 'ali', password: 'password'}));
 //setTimeout(()=> {
@@ -51,7 +54,7 @@ const reactRoot = window.document.getElementById("app");
   ReactDOM.render(
     <Provider store={store}>
       <Router history={browserHistory}>
-        {getRoutes()}
+        {getRoutes(store)}
       </Router>
     </Provider>,
     reactRoot);
