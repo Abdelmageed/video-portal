@@ -38,7 +38,7 @@ export default class VideoList extends Component {
     let videoRows = [];
     for(let i = 0; i < videoCols.length - 2; i+=3) {
       videoRows.push((
-        <Row>
+        <Row key={i}>
           {videoCols[i]}
           {videoCols[i + 1]}
           {videoCols[i + 2]}
