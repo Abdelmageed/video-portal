@@ -13,7 +13,6 @@ function addRating(state, id, rating) {
 
 function loadVideos(state, videos) {
   const newVideos = state.items.concat(videos);
-  console.log(state);
   return Object.assign({}, state, {items: newVideos});
 }
 

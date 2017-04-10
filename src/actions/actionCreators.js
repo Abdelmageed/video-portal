@@ -126,9 +126,11 @@ export const logout = ()=> {
 //videos
 export const getVideos = ()=> {
   return (dispatch, getState)=> {
+    dispatch(loadingVideos());
     const sessionId = getState().user.sessionId,
-        skip = getState().videos.length,
+        skip = getState().videos.items.length,
         limit = 3;
+    console.log(skip);
     return axios.get(endpoints.videos, {
       params: {
         sessionId,
@@ -137,7 +139,13 @@ export const getVideos = ()=> {
       }
     })
       .then((response)=> {
-        dispatch(loadVideos(response.data.data));
+        const videos = response.data.data;
+        if(videos.length > 0){
+          dispatch(loadVideos(videos));
+        } else {
+          dispatch(loadedAllVideos());
+        }
+        dispatch(loadedVideos());
       })
       .catch((error)=> {
         if (error.response) throw error.response;
