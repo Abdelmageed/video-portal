@@ -33,19 +33,15 @@ export default class VideoRating extends Component {
     this.setState({
       hasRated: true
     });
-//    forceUpdate
-  }
-  
-  componentDidUpdate() {
     setTimeout(()=> {
       this.loadRating();
     }, 1000); //dirty work around here. There is a bug where the component is updated with the old ratings array
   }
-  
+   
   componentDidMount() {
     this.loadRating();
   }
-  
+//  
   render() {
     return (
       <div>
