@@ -9,6 +9,7 @@ import LoginPage from './components/LoginPage';
 import VideoDetailsPage from './containers/VideoDetailsPage';
 
 import {resetLoadedVideos, resetLoadedVideo} from './actions/actionCreators';
+import {getVideo} from './actions/thunkCreators';
 
 export const getRoutes = (store) => {
   
@@ -26,12 +27,20 @@ export const getRoutes = (store) => {
   const handleIndexOnEnter = (nextState, replace) => {
     redirectIfNotAuth(nextState, replace);
     store.dispatch(resetLoadedVideos());
+    window.scrollTo(0, 0);
+  };
+  
+  const handleDetailsOnEnter = (nextState, replace) => {
+    redirectIfNotAuth(nextState, replace);
+    store.dispatch(resetLoadedVideo());
+    store.dispatch(getVideo(nextState.params.id));
+    window.scrollTo(0, 0);
   };
   
   return (
     <Route path="/" component={App}>
        <IndexRoute component={IndexPage} onEnter={handleIndexOnEnter}/>
-       <Route path="video/:id" component={VideoDetailsPage} onEnter={redirectIfNotAuth} />
+       <Route path="video/:id" component={VideoDetailsPage} onEnter={handleDetailsOnEnter} />
      <Route path="login" component={LoginPage} />
     </Route>
   );
