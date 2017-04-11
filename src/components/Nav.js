@@ -11,7 +11,7 @@ export default class Nav extends Component{
   
   render(){
       return (
-        <Bootstrap.Navbar>
+        <Bootstrap.Navbar fluid={true} fixedTop>
         <Bootstrap.Navbar.Header>
           <Bootstrap.Navbar.Brand>
             <IndexLink style={{cursor:'pointer'}} to="/">Video Portal</IndexLink>
