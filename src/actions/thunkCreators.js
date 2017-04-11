@@ -14,7 +14,6 @@ export const login = (credentials)=> {
   return (dispatch)=> {
     dispatch(actions.loginPending());
     return axios.post(endpoints.login,
-//                      JSON.stringify(newCredentials)
                         newCredentials
 
   )
@@ -49,7 +48,6 @@ export const logout = ()=> {
       .then((response)=> {
       if(response.data.status === 'success') {
         dispatch(actions.removeUser());
-//        browserHistory.push('/login');
         dispatch(push('/login'));
       }
     })
@@ -66,7 +64,11 @@ export const getVideos = ()=> {
     dispatch(actions.loadingVideos());
     const sessionId = getState().user.sessionId,
         skip = getState().videos.items.length,
-        limit = 3;
+        limit = 10;
+    if(sessionId === ''){ 
+      //for page refresh inconsistency with redux-persist
+      return;
+    }
     return axios.get(endpoints.videos, {
       params: {
         sessionId,
@@ -94,6 +96,7 @@ export const rateVideo = (videoId, rating)=> {
     const sessionId = getState().user.sessionId;
     return axios.post(`${endpoints.rating}?sessionId=${sessionId}`, {videoId, rating})
       .then(()=> {
+        dispatch(actions.addRatingAtDetails(videoId, rating));
         dispatch(actions.addRating(videoId, rating));
       })
       .catch((error)=> {
@@ -107,6 +110,10 @@ export const rateVideo = (videoId, rating)=> {
 export const getVideo = (videoId)=> {
   return (dispatch, getState)=> {
     const sessionId = getState().user.sessionId;
+    if(sessionId === ''){
+      //for page refresh inconsistency with redux-persist
+      return;
+    }
     return axios.get(endpoints.video, {
       params: {
         sessionId,

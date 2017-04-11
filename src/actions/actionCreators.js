@@ -1,11 +1,5 @@
-import md5 from 'md5';
-import {push} from 'react-router-redux';
-
 import * as actions from '../constants/actions';
 import * as errors from '../constants/errors';
-import * as endpoints from '../constants/endpoints';
-
-const axios = endpoints.axiosInstance;
 
 //user
 export const setUser = (user)=> ({
@@ -65,6 +59,16 @@ export const resetLoadedVideos = ()=> ({
 export const loadVideo = (video)=> ({
   type: actions.LOAD_VIDEO,
   video
+});
+
+export const resetLoadedVideo = ()=> ({
+  type: actions.RESET_LOADED_VIDEO
+});
+
+export const addRatingAtDetails = (id, rating)=> ({
+  type: actions.ADD_RATING_AT_DETAILS,
+  id,
+  rating
 });
 //end video
 
