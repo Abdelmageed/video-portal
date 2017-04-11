@@ -125,13 +125,97 @@ describe('Videos Reducer', ()=> {
     expect(videos(state, action)).toEqual(nextState);
   });
   
-  it('should get videos', (done)=> {
-    done();
+  describe('Thunk getVideos()', ()=> {
+    
+    it('should load videos in store if response returned with a non empty data array', (done)=> {
+      const response = {
+        status: 'success',
+        data: videosData
+      },
+        expectedActions = [
+          actions.loadingVideos(),
+          actions.loadVideos(videosData),
+          actions.loadedVideos()
+        ];
+      
+      const store = storeMock({
+          user: {
+            sessionId:'CLr7NWvDvdyy1h9Uhtce0CaO4lL09d0z'
+          },
+          videos: {
+            items: []
+          }
+      });
+
+    axiosMock.onGet(endpoints.videos)
+      .reply(200, response);
+
+    store.dispatch(thunks.getVideos());
+    setTimeout(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    }, 10);
+      
+    });
+    
+    it('should set allLoaded to true if response returned with an empty data array', (done)=> {
+       const response = {
+        status: 'success',
+        data: []
+      },
+        expectedActions = [
+          actions.loadingVideos(),
+          actions.loadedAllVideos(),
+          actions.loadedVideos()
+        ];
+      
+      const store = storeMock({
+          user: {
+            sessionId:'CLr7NWvDvdyy1h9Uhtce0CaO4lL09d0z'
+          },
+          videos: {
+            items: []
+          }
+      });
+
+    axiosMock.onGet(endpoints.videos)
+      .reply(200, response);
+
+    store.dispatch(thunks.getVideos());
+    setTimeout(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    }, 10);
+    
   });
+});
   
   it('should rate a video', (done)=> {
-    done();
+    const response = {
+        status: 'success'
+    },
+        videoId = '5757e6e41b0a244b256ac1d7',
+        rating = 4,
+        expectedActions = [
+          actions.addRating(videoId, rating)
+        ];
+      
+      const store = storeMock({
+          user: {
+            sessionId:'CLr7NWvDvdyy1h9Uhtce0CaO4lL09d0z'
+          }
+      });
+
+    axiosMock.onPost(endpoints.rating)
+      .reply(200, response);
+
+    store.dispatch(thunks.rateVideo(videoId, rating));
+    setTimeout(() => {
+      expect(store.getActions()).toEqual(expectedActions);
+      done();
+    }, 10);
   });
+  
   
   
   
