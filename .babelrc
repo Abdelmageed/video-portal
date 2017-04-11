@@ -29,7 +29,8 @@
         ],
         "include": [
           "src/components/**/*.js",
-          "src/reducers/**/*.js"
+          "src/reducers/**/*.js",
+          "src/actions/thunkCreators.js"
         ]
       }]]
     }

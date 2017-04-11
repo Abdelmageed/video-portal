@@ -30,25 +30,10 @@ gulp.task('tdd', (done)=> {
   done();
 });
 
-//gulp.task('cover', (done)=> {
-//  return gulp.src('src/**/*.js')
-//    .pipe(cover.instrument({
-//      pattern: ['**/*.spec.js', '!node_modules'],
-//      debugDirectory: 'debug'
-//    }))
-//    .pipe(jasmine({
-//      conf: require('../configs/jasmine/conf.json'),
-//      errorOnFail: false
-//    }))
-//    .pipe(cover.gather())
-//    .pipe(cover.format())
-//    .pipe(gulp.dest('coverage'));
-//});
-
+//TODO: make it a single run when you finish covering
 gulp.task('cover', (done)=> {
   new Server({
-    configFile: path.join(__dirname, '..', 'configs/karma/config.js'),
-    singleRun: true
+    configFile: path.join(__dirname, '..', 'configs/karma/config.js')
   }, done)
   .start();
 });

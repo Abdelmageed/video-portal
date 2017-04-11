@@ -5,40 +5,23 @@ var webpack = require('webpack');
 module.exports = function (config) {
   config.set({
     browsers: ['Chrome'],
-//    files: [
-//      'tests.webpack.js',
-//    ],
+    basePath: '../../src',
      files: [
-      '../../src/**/*spec.js',
+      'components/**/*.js',
+      'reducers/**/*.js',
+      'actions/thunkCreators.js' 
     ],
+    browserNoActivityTimeout: 60000,
     frameworks: [
       'jasmine',
     ],
     preprocessors: {
-//      'tests.webpack.js': ['webpack', 'sourcemap'],
-      '../../src/**/*spec.js': ['webpack', 'sourcemap'],
-//      '../../src/(components)+(reducers)/**/!(*.spec)+(.js)': ['webpack', 'sourcemap', 'coverage']
-//            '../../src/components/App.js': ['coverage']
-
+      '**/*.js': ['webpack']
     },
     reporters: ['progress', 'coverage-istanbul', 'coverage'],
-    coverageIstanbulReporter: {
-      reports: ['html'],
-//      dir: path.join(__dirname, 'coverage'),
-        dir: '/coverage',
-
-       // if using webpack and pre-loaders, work around webpack breaking the source path
-      fixWebpackSourcePaths: true,
-//      'report-config': {
-//        html: {
-//          // outputs the report in ./coverage/html
-//          subdir: 'html'
-//        }
-//      },
-  },
     webpack: {
       cache: true,
-      devtool: 'inline-source-map',
+      devtool: 'eval-source-map',
       plugins: [
          new webpack.LoaderOptionsPlugin({
           minimize: true,
@@ -88,22 +71,13 @@ module.exports = function (config) {
       {enforce: 'pre', test: /\.(jpe?g|png|gif)$/i, loader: 'file-loader?name=[name].[ext]'},
       {enforce: 'pre', test: /\.ico$/, loader: 'file-loader?name=[name].[ext]'},
       {enforce: 'pre', test: /(\.css|\.scss|\.sass)$/, loaders: ['style-loader', 'css-loader?sourceMap', 'postcss-loader', 'sass-loader?sourceMap']},
-//          {
-//            test: /^((?!spec).)*\.js$/,
-////            include: path.resolve(__dirname, '../src'),
-//            include: '/src',
-//            exclude: /(bower_components|node_modules)/,
-//            loader: 'istanbul-instrumenter-loader',
-//            query: {
-//              cacheDirectory: true,
-//            },
-//          },
         ]
       },
   },
     coverageReporter: {
       type : 'html',
-      dir : '../../coverage/',
+      dir : '../coverage/',
+      includeAllSources: true
     }
   });
 }
