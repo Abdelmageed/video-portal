@@ -1,7 +1,7 @@
 import {connect} from 'react-redux';
 
 import VideoRating from '../components/VideoRating';
-import {rateVideo} from '../actions/actionCreators';
+import {rateVideo} from '../actions/thunkCreators';
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
   rateVideo : (rating) => {

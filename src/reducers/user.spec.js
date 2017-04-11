@@ -4,11 +4,11 @@ import thunk from 'redux-thunk';
 import {push} from 'react-router-redux';
 
 import user from './user';
-import {initialState}
-from '../initialState';
+import {initialState} from '../initialState';
 import * as actionNames from '../constants/actions';
 import * as endpoints from '../constants/endpoints';
 import * as actions from '../actions/actionCreators';
+import * as thunks from '../actions/thunkCreators';
 import * as errors from '../constants/errors';
 
 let axiosMock,
@@ -129,7 +129,7 @@ describe('User Reducer', () => {
     axiosMock.onPost(endpoints.login)
       .reply(200, response);
 
-    store.dispatch(actions.login(credentials));
+    store.dispatch(thunks.login(credentials));
     setTimeout(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
@@ -155,7 +155,7 @@ describe('User Reducer', () => {
     axiosMock.onPost(endpoints.login)
       .reply(200, response);
 
-    store.dispatch(actions.login(credentials));
+    store.dispatch(thunks.login(credentials));
     setTimeout(() => {
       expect(store.getActions()).toEqual(expectedActions);
       done();
@@ -182,7 +182,7 @@ describe('User Reducer', () => {
     axiosMock.onGet(endpoints.logout)
       .reply(200, response);
 
-    store.dispatch(actions.logout());
+    store.dispatch(thunks.logout());
 
     setTimeout(() => {
       expect(store.getActions()).toEqual(expectedActions);

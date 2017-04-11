@@ -1,6 +1,6 @@
 import {connect} from 'react-redux';
 
-import {getVideos} from '../actions/actionCreators';
+import {getVideos} from '../actions/thunkCreators';
 import VideoList from '../components/VideoList';
 
 const mapStateToProps = (state) => ({

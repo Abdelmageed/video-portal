@@ -6,6 +6,7 @@ import {initialState} from '../initialState';
 import * as actionNames from '../constants/actions';
 import * as endpoints from '../constants/endpoints';
 import * as actions from '../actions/actionCreators';
+import * as thunks from '../actions/thunkCreators';
 
 let axiosMock,
   storeMock,
