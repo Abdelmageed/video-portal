@@ -1,13 +1,13 @@
 import {connect} from 'react-redux';
 
 import VideoDetailsPage from '../components/VideoDetailsPage';
-import {getVideo} from '../actions/actionCreators';
+import {getVideo} from '../actions/thunkCreators';
 
-const mapStateToProps = (state, ownProps) => ({
-  video: state.videos.items.filter((video)=> {
-    return video._id === ownProps.params.id;
-  })[0]
+const mapStateToProps = (state) => ({
+  video: state.video
 });
 
-
-export default connect(mapStateToProps)(VideoDetailsPage);
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  getVideo: ()=> {dispatch(getVideo(ownProps.params.id));}
+})
+export default connect(mapStateToProps, mapDispatchToProps)(VideoDetailsPage);
