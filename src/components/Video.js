@@ -23,7 +23,7 @@ export default class Video extends Component {
         <div className="video-title">
         {
           (this.props.withLink)?
-           <Link to={`video/${this.props.id}`}>
+           <Link to={`/video/${this.props.id}`}>
             {this.props.name}
            </Link>
             :
@@ -34,9 +34,9 @@ export default class Video extends Component {
           <video 
            controls 
            ref={(ref) => {this.videoRef = ref;}}
-           onPlay={this.handleOnPlay}>
-            <source src={this.props.source} />
-          </video>
+           onPlay={this.handleOnPlay}
+           src={this.props.source} />
+            
         </div>
         <p className="video-description">
           {this.props.description}
