@@ -66,7 +66,8 @@ export default class LoginForm extends Component {
           boxShadow: '0 2px 5px rgba(0, 0, 0, 0.3)',
           padding: '10px',
           borderRadius: '3%',
-          width: '50%'
+          width: '75%',
+          backgroundColor: 'white'
         }}>
       <FormGroup controlId="username">
         <ControlLabel>Username</ControlLabel>
