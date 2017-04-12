@@ -1,7 +1,20 @@
-body{
-  background-color: darkslategrey;
-  color: white;
+#app, html{
+  background-color: #CCC;
 }
 .rating-disabled{
   cursor: default !important;
+}
+.video-container{
+  background-color: white;
+  padding: 10px;
+  border-radius: 2.5%;
+}
+.list-video{
+  text-align: center;
+  opacity: 0.85;
+  transition:all 350ms ease-in-out;
+}
+.list-video:hover, .list-video:focus{
+  opacity: 1;
+  box-shadow:0 0 0 4px royalblue;
 }
