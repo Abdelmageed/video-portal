@@ -15,22 +15,24 @@ export default class VideoList extends Component {
   
   renderVideos() {
     return this.props.videos.map((video)=> (
-      <Video
-          key={video._id}
-          id={video._id}
-          name={video.name}
-          description={video.description}
-          ratings={video.ratings}
-          source={apiUrl + video.url}
-          setActive={this.props.setActiveVideo}
-          withLink={true}
-      />
+      <div
+        key={video._id}
+        style={{marginBottom: 30}}>
+        <Video
+            id={video._id}
+            name={video.name}
+            description={video.description}
+            ratings={video.ratings}
+            source={apiUrl + video.url}
+            setActive={this.props.setActiveVideo}
+            withLink={true}
+        />
+      </div>
     ));
   }
   
   render() {
     return (
-      <Col md={4} xs={12}>
         <InfiniteScroll
           elementIsScrollable={false}
           items={this.renderVideos()}
@@ -39,7 +41,6 @@ export default class VideoList extends Component {
           loadingMore={this.props.loading}
           threshold={300}
         />
-      </Col>
     );
   }
   
