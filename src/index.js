@@ -20,31 +20,6 @@ store.subscribe(()=> {
   const sessionId = store.getState().user.sessionId;
   localStorage.setItem('sessionId', sessionId);
 });
-//setTimeout(() => {
-//  store.dispatch(actions.getVideos());
-//  console.log('got first 4 videos');
-//}, 5000);
-//test actions
-//store.dispatch(actions.login({username: 'ali', password: 'password'}));
-//setTimeout(()=> {
-//  console.log(store.getState());
-//  store.dispatch(actions.logout());
-//  setTimeout(()=> {
-//    console.log(store.getState());
-//    store.dispatch(actions.login({username: 'ali', password: 'password'}));
-//    setTimeout(()=> {
-//      console.log(store.getState());
-//      store.dispatch(actions.getVideos());
-//        store.dispatch(actions.getVideo('58e94291b8ec1526789ec5cd'));
-//        store.dispatch(actions.rateVideo('58e94291b8ec1526789ec5cd', 1));
-//      setTimeout(()=> {
-//        console.log(store.getState());
-//
-//      }, 4000);
-//      
-//    }, 4000);
-//  }, 4000);
-//}, 4000);
 
 persistStore(store);
 
