@@ -40,6 +40,34 @@ describe('Video Reducer', ()=> {
     
   });
   
+  it('should handle RESET_LOADED_VIDEO', ()=> {
+    const action = actions.resetLoadedVideo(),
+        state = initialState.video,
+        nextState = {};
+    
+    expect(video(state, action)).toEqual(nextState);
+  });
+  
+  it('should handle ADD_RATING_AT_DETAILS, returning the previous state if IDs do not match', ()=> {
+    const id = 'someMismatchingId',
+      rating = 4,
+      action = actions.addRatingAtDetails(id, rating),
+      state = initialState.video,
+      nextState = state;
+    
+    expect(video(state, action)).toEqual(nextState);
+  });
+  
+    it('should handle ADD_RATING_AT_DETAILS, adding the rating if IDs match', ()=> {
+    const id = videoData._id,
+      rating = 4,
+      action = actions.addRatingAtDetails(id, rating),
+      state = videoData,
+      nextState = Object.assign({}, state, {ratings: state.ratings.concat(rating)});
+    
+    expect(video(state, action)).toEqual(nextState);
+  });
+  
   it('should get a video', (done)=> {
     done();
   });

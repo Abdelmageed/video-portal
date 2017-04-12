@@ -197,6 +197,7 @@ describe('Videos Reducer', ()=> {
         videoId = '5757e6e41b0a244b256ac1d7',
         rating = 4,
         expectedActions = [
+          actions.addRatingAtDetails(videoId, rating),
           actions.addRating(videoId, rating)
         ];
       
