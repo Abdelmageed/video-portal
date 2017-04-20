@@ -16,7 +16,7 @@ var routes = require('./routes/routes');
 var userModel = require('./models/users');
 var helperFunctions = require('./helpers/helperFunctions');
 
-
+console.log('env is: ', process.env.NODE_ENV);
 // Uncomment the following lines to start logging requests to consoles.
  app.use(morgan('combined'));
 // parse application/x-www-form-urlencoded.
