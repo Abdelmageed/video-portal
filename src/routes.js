@@ -7,6 +7,7 @@ import App from './components/App';
 import IndexPage from './components/IndexPage';
 import LoginPage from './components/LoginPage';
 import VideoDetailsPage from './containers/VideoDetailsPage';
+import NotFoundPage from './components/NotFoundPage';
 
 import {resetLoadedVideos, resetLoadedVideo} from './actions/actionCreators';
 import {getVideo} from './actions/thunkCreators';
@@ -42,6 +43,7 @@ export const getRoutes = (store) => {
        <IndexRoute component={IndexPage} onEnter={handleIndexOnEnter}/>
        <Route path="video/:id" component={VideoDetailsPage} onEnter={handleDetailsOnEnter} />
      <Route path="login" component={LoginPage} />
+     <Route path="*" component={NotFoundPage} />
     </Route>
   );
 };
