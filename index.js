@@ -5,6 +5,7 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var mongoose = require('mongoose');
 var db = mongoose.connection;
+var path = require('path');
 var app = express();
 
 db.on('error', console.error);
@@ -38,6 +39,9 @@ routes(app);
 app.use('/videos',express.static('videos'));
 // serve client side code.
 app.use('/',express.static('client'));
+app.get('*', function(req, res) {
+  res.sendFile(path.resolve(__dirname, 'client/index.html'));
+});
 
 //Finally starting the listener
 app.listen(configs.applicationPort, function () {
