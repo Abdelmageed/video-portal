@@ -6,7 +6,9 @@ export function onBuild(done) {
       gutil.log(gutil.colors.red('Error', err));
     }
     else {
-      gutil.log(gutil.colors.red(stats.toString('errors-only')));
+//      gutil.log(gutil.colors.red(stats.toString('errors-only')));
+      gutil.log(stats.toString('default'));
+
     }
 
     if(done) {

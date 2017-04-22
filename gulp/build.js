@@ -23,7 +23,7 @@ gulp.task('build:front', function (done) {
 //});
 
 gulp.task('build:clean', function(done) {
-    gutil.log(gutil.colors.yellow('cleaning clean directory'));
+    gutil.log(gutil.colors.yellow('cleaning client directory'));
   
   rimraf(path.join(__dirname, '/client'), function (err) {
     if (err)

@@ -2,7 +2,7 @@
 // For info on how we're generating bundles with hashed filenames for cache busting: https://medium.com/@okonetchnikov/long-term-caching-of-static-assets-with-webpack-1ecb139adb95#.w99i89nsz
 import webpack from 'webpack';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
-//import WebpackMd5Hash from 'webpack-md5-hash';
+import WebpackMd5Hash from 'webpack-md5-hash';
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import autoprefixer from 'autoprefixer';
 import path from 'path';
@@ -16,17 +16,17 @@ module.exports = {
   resolve: {
     extensions: ['*', '.js', '.jsx', '.json']
   },
-  devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
+//  devtool: 'eval-source-map', // more info:https://webpack.github.io/docs/build-performance.html#sourcemaps and https://webpack.github.io/docs/configuration.html#devtool
   entry: path.join(__dirname, '..', '..', 'src/index'),
   target: 'web', // necessary per https://webpack.github.io/docs/testing.html#compile-and-test
   output: {
     path: path.join(__dirname, '..', '..', 'client'),
     publicPath: '/',
-    filename: 'bundle.js'
+    filename: '[name].[chunkhash].js'
   },
   plugins: [
     // Hash the files using MD5 so that their names change when the content changes.
-//    new WebpackMd5Hash(),
+    new WebpackMd5Hash(),
 
     // Tells React to build in prod mode. https://facebook.github.io/react/downloads.html
     new webpack.DefinePlugin(GLOBALS),
@@ -57,11 +57,24 @@ module.exports = {
 
     // Minify JS
     new webpack.optimize.UglifyJsPlugin({ sourceMap: true }),
+    
+    //split code into chunks to be loaded on demand
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module) {
+        return module.context && module.context.indexOf('node_modules') !== 1;
+      }
+    }),
+    
+    //manifest bundle to keep vendor bundling from changing on changing app bundle
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'manifest'
+    }),
 
     new webpack.LoaderOptionsPlugin({
-      minimize: true,
-      debug: false,
-      noInfo: true, // set to false to see a list of every file being bundled.
+//      minimize: true,
+//      debug: false,
+//      noInfo: false, // set to false to see a list of every file being bundled.
       options: {
         sassLoader: {
           includePaths: [path.join(__dirname, '..', '..', 'src', 'scss')]
