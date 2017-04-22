@@ -1,7 +1,8 @@
 import axios from 'axios';
 import configs from '../../config';
 
-export const apiUrl = `http://localhost:${configs.applicationPort}/`;
+export const apiUrl = (process.env.NODE_ENV === 'production') ?
+      '' : `http://localhost:${configs.applicationPort}/`;
 export const axiosInstance = axios.create({
   baseURL: apiUrl,
   validateStatus: (status)=> {
