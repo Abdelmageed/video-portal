@@ -60,7 +60,6 @@ export const logout = ()=> {
 
 //videos
 export const getVideos = ()=> {
-  console.log('getVideos dispatched');
   return (dispatch, getState)=> {
     dispatch(actions.loadingVideos());
     const sessionId = getState().user.sessionId,
