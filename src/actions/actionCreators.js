@@ -26,10 +26,13 @@ export const loginPending = ()=> ({
 //end user
 
 //videos
-export const loadVideos = (videos)=> ({
-  type: actions.LOAD_VIDEOS,
-  videos
-});
+export const loadVideos = (videos)=> {
+  console.log('loadVideos dispatched');
+  return {
+    type: actions.LOAD_VIDEOS,
+    videos
+};
+};
 
 export const addRating = (videoId, rating)=> ({
   type: actions.ADD_RATING,
